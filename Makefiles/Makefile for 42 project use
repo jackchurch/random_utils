@@ -1,0 +1,25 @@
+NAME	= pipex
+CC		= GCC
+CFLAGS	= -Wall -Wextra -Werror
+
+CFILES	= pipex.c
+
+OBJECTS	= $(patsubst %.c,%.o,$(CFILES))
+
+all: $(NAME)
+
+$(NAME): $(OBJECTS)
+	$(CC) -o $@ $^
+
+%.o:%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+clean:
+	rm -rf $(OBJECTS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean $(NAME)
+
+.PHONY: all %.o $(NAME) clean fclean re
